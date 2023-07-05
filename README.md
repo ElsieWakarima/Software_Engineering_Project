@@ -80,6 +80,3 @@ Contributions to the university dispensary attendance tracker are welcome! If yo
 5. Open a pull request describing your changes.
 
 
-## Acknowledgments
-
-We would like to express our gratitude to the university dispensary staff and students who provided valuable insights and feedback during the development of this application. Your contributions have helped make this project possible.
