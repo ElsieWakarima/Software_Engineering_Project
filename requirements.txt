@@ -1,3 +1,5 @@
-pip install flask
-pip install flask-mysql-connector
-pip install plotly
+Flask==2.1.0
+mysql-connector-python==8.0.27
+plotly==5.1.0
+
+
