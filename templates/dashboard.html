@@ -1,12 +1,168 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.7/dist/tailwind.min.css">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+
 </head>
 
-<body>
+<body class="bg-gray-200">
+    <div class="flex h-screen">
+        <!-- Side Navigation Bar -->
+        <div class="bg-gray-500 text-white w-60 h-screen fixed ">
+            <div class="p-4">
+                <h1 class="text-2xl font-bold">GROUP 17</h1>
+            </div>
+            <ul class="space-y-2 mt-4">
+                <li class="p-2">
+                    <a class="
+                       {% if request.path == '/dashboard' %}
+                    bg-gray-800 text-white
+                  {% else %}
+                
+                  {% endif %}
+                    block p-2 hover:bg-gray-700 rounded" href="/dashboard">Dashboard</a>
+                </li>
+                <li class="p-2">
+                    <a class="
+                       {% if request.path == '/studentregistration' %}
+                    bg-gray-800 text-white
+                  {% else %}
+                
+                  {% endif %}
+                    block p-2 hover:bg-gray-700 rounded" href="/studentregistration">Student Registration</a>
+                </li>
 
+                <li class="p-2">
+                    <a class="
+                       {% if request.path == '/medicalattention' %}
+                    bg-gray-800 text-white
+                  {% else %}
+                
+                  {% endif %}
+                    block p-2 hover:bg-gray-700 rounded" href="/medicalattention">Medical Attentions</a>
+                </li>
+                <li class="p-2">
+                    <a class="
+                       {% if request.path == '/checkin' %}
+                    bg-gray-800 text-white
+                  {% else %}
+                
+                  {% endif %}
+                    block p-2 hover:bg-gray-700 rounded" href="/checkin">Check in</a>
+                </li>
+                <li class="p-2">
+                    <a class="
+                       {% if request.path == '/checkout' %}
+                    bg-gray-800 text-white
+                  {% else %}
+                
+                  {% endif %}
+                    block p-2 hover:bg-gray-700 rounded" href="/checkout">Check out</a>
+                </li>
+                <li class="p-2">
+                    <a class="
+                       {% if request.path == '/medical-records' %}
+                    bg-gray-800 text-white
+                  {% else %}
+                
+                  {% endif %}
+                    block p-2 hover:bg-gray-700 rounded" href="/medical-records">Medical Records</a>
+                </li>
+                <li class="p-2">
+                    <a class="
+                       {% if request.path == '/report' %}
+                    bg-gray-800 text-white
+                  {% else %}
+                
+                  {% endif %}
+                    block p-2 hover:bg-gray-700 rounded" href="/report">Reports</a>
+                </li>
+                <!-- Add more navigation links as needed -->
+            </ul>
+        </div>
+
+        <!-- Content Area -->
+        <div class="w-5/6 ml-60">
+            <!-- Header -->
+            <header class="bg-white p-4 shadow-lg">
+                <div class="w-full flex flex-row justify-between ">
+                    <h1 class="text-2xl font-bold">University Dispensary Dashboard</h1>
+                    <a href='./'>Log out</a>
+                </div>
+
+            </header>
+
+            <!-- Main Content -->
+            <div class="p-4 h-full">
+                {% if state == 'dashboard' %}
+                <!-- Content for the Dashboard state -->
+                <div class="p-4">
+                    <!-- Responsive Cards -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-4">
+                        <div class="bg-gray-500 text-white p-4 rounded shadow">
+                            <h2 class="text-lg font-bold">Total Students</h2>
+                            <p>{{total_students}}</p>
+                        </div>
+                        <div class="bg-green-500 text-white p-4 rounded shadow">
+                            <h2 class="text-lg font-bold">Todays Attendance</h2>
+                            <p>{{today_attendance}}</p>
+                        </div>
+                        <div class="bg-yellow-500 text-white p-4 rounded shadow">
+                            <h2 class="text-lg font-bold">Week Attendance</h2>
+                            <p>{{weekly_attendance}}</p>
+                        </div>
+                        <div class="bg-red-500 text-white p-4 rounded shadow">
+                            <h2 class="text-lg font-bold">Monthy Attendance </h2>
+                            <p>{{monthly_attendance}}</p>
+                        </div>
+                    </div>
+
+                    <!-- Member List -->
+                    <!-- Member List -->
+                    <div class=' flex flex-row'>
+                        <div id="attendance-graph" class='w-1/2'>
+                            <!-- Render the attendance graph here -->
+                            {{ graph_html | safe }}
+                        </div>
+                        <div id="attendance-graph" class='w-1/2'>
+                            <!-- Render the attendance graph here -->
+                            {{ graph_pie | safe }}
+                        </div>
+                    </div>
+                    <div class="bg-white p-4 rounded shadow">
+                        <h2 class="text-lg font-bold">Recent Attendance</h2>
+                        <table class="w-full">
+                            <thead>
+                                <tr>
+                                    <th class="py-2 px-4 bg-gray-200 font-bold text-left">Student ID</th>
+                                    <th class="py-2 px-4 bg-gray-200 font-bold text-left">Student Name</th>
+                                    <th class="py-2 px-4 bg-gray-200 font-bold text-left">Check-in Datetime</th>
+                                    <th class="py-2 px-4 bg-gray-200 font-bold text-left">Checkout Datetime</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for record in records2 %}
+                                <tr>
+                                    <td class="py-2 px-4 border">{{ record[0] }}</td>
+                                    <td class="py-2 px-4 border">{{ record[1] }}</td>
+                                    <td class="py-2 px-4 border">{{ record[2] }}</td>
+                                    <td class="py-2 px-4 border">{{ record[3] }}</td>
+                                </tr>
+
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    {%endif%}
+                </div>
+            </div>
+        </div>
 </body>
 
 </html>
