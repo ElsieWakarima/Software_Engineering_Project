@@ -26,20 +26,30 @@ This application, developed using Python, allows the university dispensary to ca
    ```bash
    cd university-dispensary-attendance-tracker
    ```
+3. Create a Virtual Environment:
 
-3. Install the required dependencies:
+   ```bash
+   py -m venv env
+   ```
+4. Activate Virtual Environment :
+
+   ```bash
+   .\env\Scripts\activate
+   ```
+
+5. Install the required dependencies:
 
    ```bash
    pip install -r requirements.txt
    ```
 
-4. Run the application:
+6. Run the application:
 
    ```bash
    python app.py
    ```
 
-5. Access the application through your web browser at `http://localhost:5000`.
+7. Access the application through your web browser at `http://localhost:5000`.
 
 ## Usage
 
