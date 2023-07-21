@@ -1,5 +1,5 @@
 # Software_Engineering_Project
-# University Dispensary Attendance Tracker
+
 
 This application, developed using Python, allows the university dispensary to capture data regarding the attendance of currently registered students when they visit the clinic for medical attention. It takes into consideration the concerns mentioned and aims to provide an efficient and convenient solution for tracking student visits.
 
@@ -18,13 +18,13 @@ This application, developed using Python, allows the university dispensary to ca
 1. Clone the repository to your local machine:
 
    ```bash
-   git clone https://github.com/your-username/university-dispensary-attendance-tracker.git
+   git clone https://github.com/your-username/Software_Engineering_Project.git
    ```
 
 2. Change to the project directory:
 
    ```bash
-   cd university-dispensary-attendance-tracker
+   cd Software_Engineering_Project
    ```
 3. Create a Virtual Environment:
 
