@@ -15,6 +15,30 @@ db = mysql.connector.connect(
 )
 cursor = db.cursor()
 
+
+@app.route('/')
+def home():
+    return render_template('login.html')
+
+
+@app.route('/login',  methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+
+        cursor.execute(
+            "SELECT * FROM users WHERE username = %s AND password = %s", (username, password))
+        user = cursor.fetchone()
+
+        if user:
+            session['username'] = user[1]
+            return redirect('/dashboard')
+        else:
+            error_message = "Invalid credentials. Please try again."
+            return render_template('login.html', error_message=error_message)
+
+
 @app.route('/dashboard')
 def dashboard():
     select_query = "SELECT a.student_id, s.name, a.checkin_datetime, IFNULL(a.checkout_datetime, 'Not checked out yet') FROM attendance a INNER JOIN students s ON a.student_id = s.student_id ORDER BY a.checkin_datetime DESC LIMIT 10"
@@ -85,5 +109,25 @@ def dashboard():
     graph_pie = fig.to_html(full_html=False)
     
     return render_template('dashboard.html', state='dashboard',records2=records2, total_students=total_students, today_attendance=today_attendance, monthly_attendance=monthly_attendance, weekly_attendance=weekly_attendance, graph_html=graph_html,graph_pie=graph_pie)
+
+
+@app.route('/studentregistration', methods=['GET', 'POST'])
+def studentregistration():
+    message = ''
+    if request.method == 'POST':
+        student_id = request.form['student_id']
+        name = request.form['name']
+        contact_details = request.form['contact_details']
+
+        insert_query = "INSERT INTO students (student_id, name, contact_details) VALUES (%s, %s, %s)"
+        data = (student_id, name, contact_details)
+        cursor.execute(insert_query, data)
+        db.commit()
+
+        message = 'Student registered successfully!'
+
+    return render_template('dashboard.html', state='studentregistration', message=message)
+
+
 if __name__ == '__main__':
     app.run(debug=True)
