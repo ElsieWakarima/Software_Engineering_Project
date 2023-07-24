@@ -159,15 +159,16 @@ def checkout():
         message = 'Successfully checked out!'
     return render_template('dashboard.html', state='checkout', message=message)
 
-if __name__ == '__main__':
-    app.run(debug=True)
-
 @app.route('/report')
 def report():
     # Generate the report data
-    # Replace with your own logic to generate the report data
     select_query = "SELECT a.student_id, s.name, a.checkin_datetime, IFNULL(a.checkout_datetime, 'Not checked out yet') FROM attendance a INNER JOIN students s ON a.student_id = s.student_id"
     cursor.execute(select_query)
     records = cursor.fetchall()
 
     return render_template('dashboard.html', state='report_data', records1=records)
+
+
+if __name__ == '__main__':
+    app.run(debug=True)
+
