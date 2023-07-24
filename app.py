@@ -35,6 +35,23 @@ def login():
             session['username'] = user[1]
             return redirect('/dashboard')
         else:
+            @app.route('/medicalattention', methods=['POST','GET'])
+def save_medical_attention():
+    message =''
+    if request.method == 'POST':
+        student_id = request.form['student_id']
+        diagnosis = request.form['diagnosis']
+        treatment = request.form['treatment']
+        medications = request.form['medications']
+      
+        
+        insert_query = "INSERT INTO medical_attention (student_id, diagnosis, treatment, medications) VALUES (%s, %s, %s, %s)"
+        data = (student_id, diagnosis, treatment, medications)
+        cursor.execute(insert_query, data)
+        db.commit()
+        message = 'Medical attention record saved successfully!'
+        
+    return render_template('dashboard.html', state='medicalattention', message=message)
             error_message = "Invalid credentials. Please try again."
             return render_template('login.html', error_message=error_message)
 
