@@ -298,6 +298,35 @@
                 </div>
                             </form>
                         </div>
+                        <div>
+                            {% elif state == 'report_data' %}
+                <!-- Content for the Register state -->
+
+                <div class="bg-white p-4 rounded shadow">
+                    <div class="container mx-auto p-4">
+                        <h1 class="text-2xl font-bold mb-4">Attendance Report</h1>
+                        {{reports1}}
+                        <table class="w-full">
+                            <thead>
+                                <tr>
+                                    <th class="py-2 px-4 bg-gray-200 font-bold text-left">Student ID</th>
+                                    <th class="py-2 px-4 bg-gray-200 font-bold text-left">Student Name</th>
+                                    <th class="py-2 px-4 bg-gray-200 font-bold text-left">Check-in Datetime</th>
+                                    <th class="py-2 px-4 bg-gray-200 font-bold text-left">Checkout Datetime</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for record in records1 %}
+                                <tr>
+                                    <td class="py-2 px-4 border">{{ record[0] }}</td>
+                                    <td class="py-2 px-4 border">{{ record[1] }}</td>
+                                    <td class="py-2 px-4 border">{{ record[2] }}</td>
+                                    <td class="py-2 px-4 border">{{ record[3] }}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
                     </div>
                 
                 </div>
