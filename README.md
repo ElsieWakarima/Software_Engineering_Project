@@ -5,7 +5,7 @@ The University Dispensary Attendance Monitoring System is designed to efficientl
 ## Features
 
 
-### 4.1 Student Registration
+### 1 Student Registration
 
 **Description:** The system allows students to register their personal information to be included in the attendance monitoring system.
 
@@ -18,7 +18,7 @@ The University Dispensary Attendance Monitoring System is designed to efficientl
 - The system  validates and store the registered student information in the database.
 - Each registered student is assigned a unique identification number.
 
-### 4.2 Application Login
+### 2 Application Login
 
 **Description:** The system enables dispensary staff to securely log in to the application to access the attendance monitoring system.
 
@@ -27,7 +27,7 @@ The University Dispensary Attendance Monitoring System is designed to efficientl
 - Before granting access, the system  verifies the staff's credentials.
 - The system  enforces appropriate security measures, such as password hashing and session management.
 
-### 4.3 Student Check-in
+### 3 Student Check-in
 
 **Description:** The system facilitates the check-in process when a student visits the dispensary for medical attention.
 
@@ -37,7 +37,7 @@ The University Dispensary Attendance Monitoring System is designed to efficientl
 - The system  records the check-in time and date for each student.
 - The student's attendance record is updated accordingly.
 
-### 4.4 Medical Attention
+### 4 Medical Attention
 
 **Description:** The system supports the recording of medical attention provided to students.
 
@@ -46,7 +46,7 @@ The University Dispensary Attendance Monitoring System is designed to efficientl
 - Staff is able to enter the medical services provided, such as diagnosis, treatment, and medications.
 - The system links the medical attention details to the student's attendance record.
 
-### 4.5 Check-out and Attendance Update
+### 5 Check-out and Attendance Update
 
 **Description:** The system facilitates the check-out process and updates the student's attendance record accordingly.
 
@@ -55,7 +55,7 @@ The University Dispensary Attendance Monitoring System is designed to efficientl
 - The system  records the check-out time and date for each student.
 - The student's attendance record is updated to indicate the completion of medical attention.
 
-### 4.6 Reporting and Analytics
+### 6 Reporting and Analytics
 
 **Description:** The system offers reporting and analytics capabilities to generate insights from the captured attendance data.
 
