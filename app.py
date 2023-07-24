@@ -128,6 +128,36 @@ def studentregistration():
 
     return render_template('dashboard.html', state='studentregistration', message=message)
 
+@app.route('/checkin', methods=['POST','GET'])
+def checkin():
+    message =''
+    if request.method == 'POST':
+        student_id = request.form['student_id']
+        insert_query = "INSERT INTO attendance (student_id, checkin_datetime) VALUES (%s, %s)"
+        checkin_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        data = (student_id, checkin_time)
+        cursor.execute(insert_query, data)
+        db.commit()
+        
+        message = 'Successfully checked in!'
+    
+    return render_template('dashboard.html', state='checkin', message=message)
+
+
+@app.route('/checkout', methods=['POST','GET'])
+def checkout():
+    message =''
+
+    if request.method == 'POST':
+        student_id = request.form['student_id']
+        update_query = "UPDATE attendance SET checkout_datetime = %s WHERE student_id = %s and checkout_datetime IS NULL "
+        checkout_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        data = (checkout_time, student_id)
+        cursor.execute(update_query, data)
+        db.commit()
+
+        message = 'Successfully checked out!'
+    return render_template('dashboard.html', state='checkout', message=message)
 
 if __name__ == '__main__':
     app.run(debug=True)
