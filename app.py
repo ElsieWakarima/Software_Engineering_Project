@@ -176,6 +176,16 @@ def checkout():
         message = 'Successfully checked out!'
     return render_template('dashboard.html', state='checkout', message=message)
 
+@app.route('/medical-records')
+def medical_records():
+  
+    # Retrieve student ID, student name, diagnosis, treatment, and medications
+    select_query = "SELECT m.student_id, s.name, m.diagnosis, m.treatment, m.medications FROM medical_attention m INNER JOIN students s ON m.student_id = s.student_id"
+    cursor.execute(select_query)
+    records = cursor.fetchall()
+
+    return render_template('dashboard.html', state='medical-records',records=records)
+
 @app.route('/report')
 def report():
     # Generate the report data
